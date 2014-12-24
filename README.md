@@ -2,6 +2,8 @@ Secret Santa
 ============
 ####A horribly messy, yet fully functional Secret Santa application.
 
+[![Gratipay](https://img.shields.io/gratipay/caffeinewriter.svg)](https://gratipay.com/caffeinewriter) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](http://choosealicense.com/licenses/mit/)
+
 ###Disclaimer
 This code was written over the course of a week after starting from scratch many-a-time. It may contain bugs, errors, vulnerabilities, or performance-sapping issues that generally suck. Many parts of this code were written between the hours of midnight and six AM.
 
