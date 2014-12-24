@@ -4,6 +4,8 @@ Secret Santa
 
 [![Gratipay](https://img.shields.io/gratipay/caffeinewriter.svg)](https://gratipay.com/caffeinewriter) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](http://choosealicense.com/licenses/mit/)
 
+You can see the logged-out front-end of a live instance of it on [Symph.rocks](http://symph.rocks)
+
 ###Disclaimer
 This code was written over the course of a week after starting from scratch many-a-time. It may contain bugs, errors, vulnerabilities, or performance-sapping issues that generally suck. Many parts of this code were written between the hours of midnight and six AM.
 
