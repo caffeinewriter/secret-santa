@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1 Message
+  h3 Sent at #{message.sent}
+  - if (message.from == santa) { var isFrom = 'Santa' } else if (message.from == 999999999) { var isFrom = 'Admin' } else { var isFrom = 'Recipient' };
+  h3 From: #{isFrom}
+  p= message.body
+  if message.from == 999999999
+    input(type='submit', value='Cannot Reply to System Message', disabled='disabled')
+  else if message.from == santa
+    form(action='/send/santa')
+      input(type='submit', value='Reply to Santa')
+  else
+    form(action='/send/recipient')
+      input(type='submit', value='Reply to Recipient')

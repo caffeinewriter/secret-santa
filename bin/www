@@ -1,0 +1,35 @@
+#!/usr/bin/env node
+
+
+var debug = require('debug')('SecretSanta');
+var path = require('path');
+var app = require('../app');
+var http = require('http');
+var https = require('https');
+var config = require(path.join(__dirname,'..', 'config.js'));
+var mongoose = require('mongoose');
+var murl = 'mongodb://' + config.db.user + ':';
+    murl = murl + config.db.pass + '@' + config.db.host;
+    murl = murl + (config.db.port ? ':' + config.db.port : '');
+    murl = murl + '/' + config.db.name;
+var MONGO_URL = process.env.MONGO_URL || murl;
+var mdbOptions;
+
+var connectDb = function() {
+  mdbOptions = {
+    server: {
+      socketOptions: {
+        keepAlive: 1
+      }
+    }
+  }
+  mongoose.connect(MONGO_URL, mdbOptions);
+};
+
+connectDb();
+
+app.set('port', process.env.PORT || config.app.port || 3333);
+
+var server = app.listen(app.get('port'), function() {
+  debug('Express server listening on port ' + server.address().port);
+});

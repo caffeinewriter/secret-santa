@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1 Pairings
+  table
+    thead
+      td Santa
+      td Recipient
+    - each santa in santas
+      tr
+        td= santa.santa
+        td= santa.recipient

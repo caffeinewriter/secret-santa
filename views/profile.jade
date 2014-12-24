@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1 Profile of #{profile.uid}
+  h3 Interests
+  p.interests= profile.interests
+  h3 Address
+  if (profile.address !== "\n , , " || profile.address != '')
+    p.address= profile.address
+  else
+    p.address This user does not have an address listed.
+  

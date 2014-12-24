@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h1 Message User by UID
+  form(action='/admin/message', method='POST')
+    .input-padding
+      input(type='text', name='uid', placeholder='UID')
+    textarea(name='message')
+    input(type='submit', value='Send Message')

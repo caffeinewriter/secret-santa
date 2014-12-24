@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1 Logged in as #{user.uid}
+  p You can now view who you're gifting to. See below. Also, please use the on-site messaging system. I know it's not ideal, but it will keep you anonymous from your recipient. It's not mandated, but it's part of the fun of Secret Santa.
+  form.stylish(action='/inbox')
+    .input-padidng
+      input(type='submit', value='Read Your Mail. ('+ unreadCount +' Unread Message' + (unreadCount == 1 ? ')' : 's)' ))
+  form(action='/view/recipient')
+    .input-padding
+      input(type='submit', value='View Who You\'re Gifting To!')

@@ -1,0 +1,39 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Arbutus+Slab', type='text/css')
+    link(rel='stylesheet', href='/stylesheets/style.css', type='text/css')
+    link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css', type='text/css')
+    script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js')
+  body
+    if error != ''
+      .error #{error}
+    if info != ''
+      .info #{info}
+    .menu-nav
+      .menu-inner
+        ul.nav
+          li.title
+            a(href='/') HF Secret Santa
+          li
+            a(href='/faq') FAQs
+          li
+            a(href='/donate') Donate
+          if user
+            li.nav-right
+              a(href='/logout') Logout
+            li.nav-right
+              a(href='/inbox') Inbox
+            li.nav-right
+              a(href='/view/recipient') View Recipient
+            li.nav-right
+              a(href='/edit') Edit Profile
+            li.nav-right
+              a(href='/dashboard') Dashboard
+          else
+            li.nav-right
+              a(href='/login') Log In
+    .container
+      block content
+    script(src='/javascripts/main.js')

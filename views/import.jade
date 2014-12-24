@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  h1 Import UIDs
+  form.stylish(method="POST", auction="/admin/import")
+    textarea(name="uids")
+    input(type="text", name="separator")
+    input(type="submit", value="Import")

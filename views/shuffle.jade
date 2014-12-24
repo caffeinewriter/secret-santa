@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1 Shuffle Users
+  p It's recommended that you close signups after completing this step, otherwise future signups will be excluded from the Secret Santa match ups.
+  
+  form(action='/admin/shuffle', method='POST')
+    .input-padding
+      input(type='submit', value='Shuffle it!')
+        

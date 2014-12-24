@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h1 Send Message to Recipient
+  .form-container
+    form.stylish(action='/send/recipient', method='POST')
+      textarea(name='message')
+      br
+      input(type='submit', value='Send Message')

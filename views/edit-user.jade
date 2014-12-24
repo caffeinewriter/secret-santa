@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1 Editing user
+  form.stylish(action='/edit', method='POST')
+    .input-group
+      input(type='text', name='uid', value=profile.uid, disabled=true)
+      input(type='password', name='password', placeholder='Password')
+    .input-padding
+      input.styled(type='text', name='interests', placeholder='Type your interests here.', value=profile.interests)
+    p Address:
+    .input-padding
+      textarea(name='address')= profile.address
+    input(type='submit', value='Edit user')

@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  h1 Inbox
+  form(action='/send/santa')
+    .input-padding
+      input(type='submit', value='Message Santa')
+  form(action='/send/recipient')
+    .input-padding
+      input(type='submit', value='Message Recipient')
+  table
+    thead      
+      td Sent
+      td From
+      td Is Read
+      td Read
+    - each message in messages
+      tr
+        - var d = new Date(message.sent);
+        - var sentAt = (d.getMonth()+1) + '-' + d.getDate() + '-' + d.getFullYear() + ' ' + d.getHours() + ':' + d.getMinutes();
+        td= sentAt
+        - if (message.from == santa) { var isFrom = 'Santa' } else if (message.from == 999999999) { var isFrom = 'Admin' } else { var isFrom = 'Recipient' };
+        td= isFrom
+        if message.unread
+          td
+            i.fa.fa-minus-square
+        else
+          td
+            i.fa.fa-check-square
+        td
+          a(href='/read/'+message.messageId) Read

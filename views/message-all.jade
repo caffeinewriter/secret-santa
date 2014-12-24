@@ -1,0 +1,7 @@
+extends layout
+
+block content
+  h1 Message All Users
+  form(action='/admin/messageall', method='POST')
+    textarea(name='message')
+    input(type='submit', value='Message All')

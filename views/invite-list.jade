@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  table
+    thead
+      td UID
+      td Invite Code
+      td PM Link
+    - each invite in invites
+      tr
+        td= invite.uid
+        td= invite.inviteCode

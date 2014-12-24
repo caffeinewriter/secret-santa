@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1 Signup
+  p Your UID is auto-filled.
+  form.stylish(action='/signup', method='POST')
+    input(type='hidden', value=inviteCode, name='inviteCode')
+    .input-group
+      input(type='text', name='uid', value=uid, disabled=true)
+      input(type='password', name='password', placeholder='Password')
+    .input-padding
+      input.styled(type='text', name='interests', placeholder='Type your interests here.')
+    p The address is only required if you wish to receive physical gifts. Otherwise, leave it blank.
+    .input-group
+      input(type='text', name='address1', placeholder='Address Line 1')
+      input(type='text', name='adderss2', placeholder='Address Line 2 (Optional)')
+      input(type='text', name='city', placeholder='City')
+      input(type='text', name='state', placeholder='State/Province')
+      input(type='text', name='postal', placeholder='Postal Code')
+      input(type='text', name='country', placeholder='Country')
+    input(type='submit', value='Join')

@@ -1,0 +1,209 @@
+body {
+  font: 14px "Arbutus Slab", Helvetica, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+table, p {
+  font-size: 1.1em;
+}
+
+.container {
+  margin-top: 5em;
+  width: 100%;
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.error, .info {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 4em;
+  color: #FFF;
+  line-height: 3em;
+  text-align: center;
+  padding: 0px;
+  z-index: 5;
+  font-size: 1.2em;
+}
+
+.error {
+  background-color: #BB3E3E;
+}
+
+.info {
+  background-color: #4772C2;
+}
+
+.menu-nav {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 4em;
+  color: #FFF;
+  background-color: #BB3E3E;
+  display: table;
+}
+
+.nav-right {
+  float: right !important;
+}
+
+ul.nav {
+  top: 0px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  height: 100%:
+}
+
+ul.nav li {
+  height: 4em;
+  position: relative;
+  display: block;
+  float: left;
+  text-align: middle;
+}
+
+ul.nav li:hover {
+  background-color: #C75757;
+}
+
+ul.nav li a {
+  display: block;
+  font-size: 1.2em;
+  line-height: 1.5em;
+  padding: 1em;
+  height: 100%;
+}
+
+.menu-inner {
+  width: 85%;
+  height: 100%;
+  margin: 0px auto;
+}
+
+.menu-nav a {
+  color: #FFF;
+  text-decoration: none;
+}
+
+.menu-nav .title {
+  text-transform: 'small-caps';
+  font-weight: 400;
+}
+
+.form-container {
+  padding-left: auto;
+  padding-right: auto;
+}
+
+textarea {
+  height: 500px;
+}
+
+input, textarea, form.stylish {
+  width: 100%;
+}
+
+input[alt^="PayPal"] {
+  width: inherit;
+}
+
+input {
+  padding: 1em 2em;
+  border: none;
+  border: 2px #444 solid;
+}
+
+.input-group {
+  padding: 1em 0;
+}
+
+.input-group input {
+  border-bottom: none;
+}
+
+.input-group input:first-child {
+  border-radius: 10px 10px 0px 0px;
+  border-bottom: none;
+}
+
+.input-group input:last-child {
+  border-radius: 0px 0px 10px 10px;
+  border-bottom: 2px #444 solid;
+}
+
+.input-padding {
+  padding: 1em 0em;
+}
+
+input[type='submit'] {
+  background-color: #4772C2;
+  color: #FFF;
+  border-radius: 10px;
+}
+
+input[type='submit']:disabled {
+  background-color: #AAA;
+}
+
+input[type='submit']:disabled:hover {
+  background-color: #AAA;
+  cursor: not-allowed;
+}
+
+input[type='submit']:hover {
+  cursor: pointer;
+  background-color: #6287CB;
+}
+
+input.styled {
+  border-radius: 10px;
+  padding: 1em inherit;
+}
+
+button.square-button {
+  width: 100%;
+  height: 200px;
+  border-radius: 10px;
+  border: 3px #444 solid;
+  background-color: #EEE;
+  margin: 0px auto;
+}
+
+button.sqaure-button a {
+  font-size: 3em;
+}
+
+table {
+  width: 100%;
+}
+
+thead {
+  font-style: bold;
+}
+
+td {
+  border-radius: 3px;
+  border-top: 2px #999 solid;
+  border-left: 2px #999 solid;
+  border-right: 2px #444 solid;
+  border-bottom: 2px #444 solid;
+  padding-left: 1em;
+}
+
+form.compact {
+  width: 50%;
+  margin: 10px;
+}

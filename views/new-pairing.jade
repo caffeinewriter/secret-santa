@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h1 New Pairing
+  form(action='/admin/pairings/new', method='POST')
+    .input-group
+      input(type='text', name='santa', placeholder='Santa')
+      input(type='text', name='recipient', placeholder='Recipient')
+      input(type='submit', value='Create Pairing')
