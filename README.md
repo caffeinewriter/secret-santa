@@ -61,6 +61,36 @@ The `config.js` file contains all necessary information for the site, and is req
 }
 ```
 
+##Frontend URLs
+These are the URLs exposed to end-users.
+
+###`/signup/:inviteCode`
+Allows users to signup for the Secret Santa, provided that they have an invite code, generated on the backend.
+
+###`/login`
+Login page. Integrated ReCAPTCHA to prevent brute forcing.
+
+###`/dashboard`
+A simple dashboard for users. Easily customizable in `dashboard.jade`.
+
+###`/inbox`
+View all messages. Easy as that.
+
+###`/read/:messageId`
+Read a specific message with ID `messageId`.
+
+###`/view/recipient`
+The profile who the logged in user is gifting to.
+
+###`/faq`
+A simple FAQ page. Currently monopolized by my FAQs.
+
+###`/donate`
+A donation page, to allow users to donate to keep the server up. You may swap the info out for your own.
+
+###`/edit`
+Allows users to edit their own profile and change their password.
+
 ##Admin URLs
 All admin URLs are secured with HTTP Basic authentication. The username and password combination are specified in the `config.js` file.
 
