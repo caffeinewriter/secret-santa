@@ -17,7 +17,8 @@ block content
     - each message in messages
       tr
         - var d = new Date(message.sent);
-        - var sentAt = (d.getMonth()+1) + '-' + d.getDate() + '-' + d.getFullYear() + ' ' + d.getHours() + ':' + d.getMinutes();
+        - var padZero = function(number) {number = number + '';return (number.length == 1 ? '0'+number : number);}
+        - var sentAt = padZero((d.getMonth()+1)) + '-' + padZero(d.getDate()) + '-' + d.getFullYear() + ' ' + padZero(d.getHours()) + ':' + padZero(d.getMinutes());
         td= sentAt
         - if (message.from == santa) { var isFrom = 'Santa' } else if (message.from == 999999999) { var isFrom = 'Admin' } else { var isFrom = 'Recipient' };
         td= isFrom
