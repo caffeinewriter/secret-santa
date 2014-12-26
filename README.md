@@ -19,8 +19,9 @@ This code was written over the course of a week after starting from scratch many
 
 1. Run `git clone https://github.com/caffeinewriter/secret-santa`.
 2. Fill out `config.js` with all information. See `config.sample.js` for a template.
-3. Run `npm install`
-4. Run it with `npm start`. The port it binds to can be set by these methods, in this order of precedence:
+3. It is highly recommended that you customize the `faq.jade` and `donate.jade` files. However, if you leave `donate.jade` unchanged, you'll be supporting ongoing development. 
+4. Run `npm install`
+5. Run it with `npm start`. The port it binds to can be set by these methods, in this order of precedence:
   * `PORT` environment variable. E.g. `PORT=3000 npm start`
   * config.js app.port attribute.
   * If neither of those are present, the application will default to port 3333.
