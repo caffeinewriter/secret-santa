@@ -523,7 +523,9 @@ router.get('/inbox', isNotAuthenticated, function (req, res) {
     if (err) {
       console.error(err);
     }
-    Santa.findOne({ santa: req.user.uid }, function(err, santa) {
+    Santa.findOne({
+      recipient: req.user.uid
+    }, function(err, santa) {
       if (!santa) {
         santa = {};
         santa.santa = 1;
@@ -625,23 +627,29 @@ router.post('/send/recipient', isNotAuthenticated, function (req, res) {
 });
 
 router.get('/read/:message', isNotAuthenticated, function (req, res) {
-  Message.findOne({
-    messageId: req.params.message
-  }, function (err, message) {
-    if (message.unread) {
-      message.unread = false;
-      message.save(function (err) {
-        if (err) {
-          console.error(err);
-        }
+  Santa.findOne({
+    recipient: req.user.uid
+  }, function(err, santa) {
+    Message.findOne({
+      messageId: req.params.message,
+      recipient: req.user.uid
+    }, function (err, message) {
+      if (message.unread) {
+        message.unread = false;
+        message.save(function (err) {
+          if (err) {
+            console.error(err);
+          }
+        });
+      }
+      res.render('message', {
+        info: req.flash('info'),
+        error: req.flash('error'),
+        title: 'Secret Santa | Read Message',
+        message: message,
+        user: req.user,
+        santa: santa.santa
       });
-    }
-    res.render('message', {
-      info: req.flash('info'),
-      error: req.flash('error'),
-      title: 'Secret Santa | Read Message',
-      message: message,
-      user: req.user
     });
   });
 });
