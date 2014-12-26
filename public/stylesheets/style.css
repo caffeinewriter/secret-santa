@@ -207,3 +207,45 @@ form.compact {
   width: 50%;
   margin: 10px;
 }
+
+.menu-tab: {
+  display: none;
+}
+
+@media screen and (max-width: 1096px) {
+  .menu-tab {
+    display: block;
+    width: 48px;
+    height: 48px;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    margin-left: -24px;
+    background-color: #BB3E3E;
+  }
+  .menu-tab a {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: #FFF;
+    text-decoration: none;
+  }
+  .menu-nav {
+    display: none;
+    background-color: transparent;
+  }
+  .menu-inner {
+    width: 100%;
+  }
+  ul.nav li {
+    width: 100%;
+    height: 4em;
+    background-color: #BB3E3E;
+  }
+  ul.nav li a {
+    color: #FFF;
+    font-size: 1em;
+    line-height: 1em;
+    padding: 1.5em;
+  }
+}
