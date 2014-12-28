@@ -136,9 +136,11 @@ View the specified user's profile.
 * Securely hashed passwords using bcrypt.
 * Integrated messaging system.
 * Guaranteed collision-free pairing algorithm.
-* Responsive design.
-* Simple
-* Secure
+* Responsive design and mobile compatibility.
+* Session persistence across restarts.
+* Robust core feature set.
+* Simple.
+* Secure.
 
 
 ##Contributing
