@@ -98,6 +98,9 @@ Read a specific message with ID `messageId`.
 ###`/view/recipient`
 The profile who the logged in user is gifting to.
 
+###`/received`
+A page that will allow users to mark if they have received their gift.
+
 ###`/faq`
 A simple FAQ page. Currently monopolized by my FAQs.
 
