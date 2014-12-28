@@ -1,6 +1,7 @@
 var express = require('express');
 var session = require('express-session');
 var path = require('path');
+var config = require(path.join(__dirname, 'config.js'));
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -15,7 +16,6 @@ var mongoStoreOpts = {
 var MongoStore = require('connect-mongo')(session);
 var flash = require('connect-flash');
 var passport = require('passport');
-var config = require(path.join(__dirname, 'config.js'));
 
 var routes = require('./routes/index');
 

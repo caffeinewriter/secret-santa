@@ -8,6 +8,11 @@ var SantaSchema = new mongoose.Schema({
   recipient: {
     type: String,
     required: true
+  },
+  received: {
+    type: Boolean,
+    required: false,
+    default: false
   }
 });
 

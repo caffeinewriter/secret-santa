@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h1 Confirm Gift Receipt
+  p This will confirm that you have received your gift. If you mark this in error, contact Crypto&trade;, but please, try to not do it unless you've actually received your gift.
+  
+  form.stylish(action='/received', method='POST', onSubmit='return (prompt(\'Please type "I have received my gift" below. Case insensitive, no punctuation.\').toLowerCase() === "i have received my gift")')
+    input(type='submit', value='Confirm Gift Receipt')
+      

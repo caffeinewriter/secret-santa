@@ -517,6 +517,50 @@ router.get('/dashboard', isNotAuthenticated, function (req, res) {
   });
 });
 
+router.get('/received', isNotAuthenticated, function (req, res) {
+  Santa.findOne({
+    recipient: req.user.uid
+  }, function(err, santa) {
+    if (!santa || err) {
+      console.error(err);
+      req.flash('error', 'Oops! Something went wrong.');
+      return res.redirect('/dashboard');
+    }
+    if (santa.received) {
+      req.flash('info', 'You have already marked your gift as received.');
+      return res.redirect('/dashboard');
+    }
+    res.render('confirm-receipt', {
+      info: req.flash('info'),
+      error: req.flash('error'),
+      title: 'Secret Santa | Confirm Gift Receipt',
+      user: req.user
+    });
+  });
+});
+
+router.post('/received', isNotAuthenticated, function (req, res) {
+  Santa.findOne({
+    recipient: req.user.uid
+  }, function(err, santa) {
+    if (!santa || err) {
+      console.error(err);
+      req.flash('error', 'Oops! Something went wrong.');
+      return res.redirect('/receive');
+    }
+    santa.received = true;
+    santa.save(function(err) {
+      if (err) {
+        console.error(err);
+        req.flash('error', 'Oops! Something went wrong.');
+        return res.redirect('/receive')
+      }
+      req.info('info', 'Gift confirmed received.');
+      res.redirect('/dashboard');
+    });
+  });
+});
+
 router.get('/inbox', isNotAuthenticated, function (req, res) {
   Message.find({recipient: req.user.uid}).sort({sent: -1}).exec(function (err, messages) {
     if (err) {
