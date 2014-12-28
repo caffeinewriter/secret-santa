@@ -13,6 +13,7 @@ This code was written over the course of a week after starting from scratch many
 
 * Node.js. Tested on >=0.10.34
 * npm. Tested on >=1.4.28
+* [Microsoft Visual Studio Express](http://www.visualstudio.com/products/visual-studio-express-vs) will likely be needed to compile all dependencies on Windows. 
 * A MongoDB database
 
 #Installing
