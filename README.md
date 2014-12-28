@@ -26,6 +26,17 @@ This code was written over the course of a week after starting from scratch many
   * config.js app.port attribute.
   * If neither of those are present, the application will default to port 3333.
 
+##Features
+
+* Securely hashed passwords using bcrypt.
+* Integrated messaging system.
+* Guaranteed collision-free pairing algorithm.
+* Responsive design and mobile compatibility.
+* Session persistence across restarts.
+* Robust core feature set.
+* Simple.
+* Secure.
+
 ##`config.js`
 
 The `config.js` file contains all necessary information for the site, and is required to run it. It is structured like this:
@@ -130,17 +141,6 @@ Complete the signup process for a user with the specified UID. Useful if you nee
 
 ###`/admin/view/:uid`
 View the specified user's profile.
-
-##Features
-
-* Securely hashed passwords using bcrypt.
-* Integrated messaging system.
-* Guaranteed collision-free pairing algorithm.
-* Responsive design and mobile compatibility.
-* Session persistence across restarts.
-* Robust core feature set.
-* Simple.
-* Secure.
 
 
 ##Contributing
