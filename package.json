@@ -23,6 +23,6 @@
     "passport-local": "~1.0.0",
     "http-auth": "~2.2.5",
     "sanitizer": "~0.1.2",
-    "nodetime": "*"
+    "connect-mongo": "~0.5.0"
   }
 }

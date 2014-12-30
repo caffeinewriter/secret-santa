@@ -16,6 +16,9 @@ var config = {
   session: {
     secret: 'moo moo black sheep'
   },
+  mongoStore: {
+    salt: 'you can dance if you want to'
+  },
   app: {
     port: 80
   },

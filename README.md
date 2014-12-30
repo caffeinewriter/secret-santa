@@ -19,7 +19,7 @@ This code was written over the course of a week after starting from scratch many
 
 1. Run `git clone https://github.com/caffeinewriter/secret-santa`.
 2. Fill out `config.js` with all information. See `config.sample.js` for a template.
-3. It is highly recommended that you customize the `faq.jade` and `donate.jade` files. However, if you leave `donate.jade` unchanged, you'll be supporting ongoing development. 
+3. It is highly recommended that you customize the `index.jade`, `faq.jade` and `donate.jade` files. However, if you leave `donate.jade` unchanged, you'll be supporting ongoing development.
 4. Run `npm install`
 5. Run it with `npm start`. The port it binds to can be set by these methods, in this order of precedence:
   * `PORT` environment variable. E.g. `PORT=3000 npm start`
@@ -48,6 +48,9 @@ The `config.js` file contains all necessary information for the site, and is req
   },
   session: {
     secret: 'session secret' // The secret used for signing sessions.
+  },
+  mongoStore: {
+    salt: 'hash salt', // The salt used to hash session IDs.
   },
   app: {
     port: 80 // The port the application will bind to. Overridden by a PORT environment variable.

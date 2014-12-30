@@ -6,18 +6,16 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var mongoStoreOpts = {
+  mongooseConnection: mongoose.connection,
+  hash: {
+    salt: config.mongoStore.salt
+  }
+}
+var MongoStore = require('connect-mongo')(session);
 var flash = require('connect-flash');
 var passport = require('passport');
 var config = require(path.join(__dirname, 'config.js'));
-// var RedisStore = require('connect-redis')(session);
-//
-// var rsStore = {
-//   host: config.redis.host,
-//   port: config.redis.port,
-//   pass: config.redis.pass,
-//   ttl: 172800,
-//   db: 'SecretSanta'
-// }
 
 var routes = require('./routes/index');
 
@@ -35,6 +33,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser(config.cookie.secret));
 app.use(session({
+  store: new MongoStore(mongoStoreOpts),
   secret: config.session.secret,
   resave: false,
   saveUninitialized: true,
