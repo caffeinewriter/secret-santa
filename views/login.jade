@@ -6,9 +6,8 @@ block content
   h1 Log In
   .login-container
     form.stylish(action='/login', method='POST')
-      p Your login name is your HackForums UID
       .input-group
-        input.form-input.username(name='username', type='text', placeholder='HackForums UID')
+        input.form-input.username(name='username', type='text', placeholder='User ID')
         input.form-input.password(name='password', type='password', placeholder='Password')
       .captcha!= captcha
       br
