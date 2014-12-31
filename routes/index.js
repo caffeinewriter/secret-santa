@@ -1,7 +1,6 @@
 var express = require('express');
 var path = require('path');
 var crypto = require('crypto');
-var crc = require('crcaptcha');
 var passport = require('passport');
 var config = require(path.join(__dirname, '..', 'config.js'));
 var LocalStrategy = require('passport-local');
@@ -196,7 +195,7 @@ router.get('/logout', function (req, res) {
   req.logout();
   req.flash('error', 'You have been successfully logged out.');
   res.redirect('/login');
-})
+});
 
 router.get('/admin/import', auth.connect(basic), function (req, res) {
   res.render('import', {
@@ -744,6 +743,6 @@ router.get('/donate', function(req, res) {
     title: 'Secret Santa | Donate',
     user: req.user
   });
-})
+});
 
 module.exports = router;
