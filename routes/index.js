@@ -4,18 +4,15 @@ var crypto = require('crypto');
 var passport = require('passport');
 var config = require(path.join(__dirname, '..', 'config.js'));
 var LocalStrategy = require('passport-local');
-var mongoose = require('mongoose');
 var User = require(path.join(__dirname, '..', 'models/user-model.js'));
 var Message = require(path.join(__dirname, '..', 'models/message-model.js'));
 var Santa = require(path.join(__dirname, '..', 'models/santa-model.js'));
 var Invite = require(path.join(__dirname, '..', 'models/invite-model.js'));
 var router = express.Router();
-var flash = require('connect-flash');
 var auth = require('http-auth');
 var sanitizer = require('sanitizer');
 var recaptcha = require('express-recaptcha');
 var _ = require('underscore');
-var emptyAddr = "\n, , ";
 recaptcha.init(config.recaptcha.site, config.recaptcha.secret);
 
 var basic = auth.basic({
@@ -63,7 +60,7 @@ var isNotAuthenticated = function(req, res, next) {
     return res.redirect('/login');
   }
   next();
-}
+};
 
 var isAuthenticated = function(req, res, next) {
   if (req.isAuthenticated()) {
@@ -71,7 +68,7 @@ var isAuthenticated = function(req, res, next) {
     return res.redirect('/dashboard');
   }
   next();
-}
+};
 
 /* GET home page. */
 router.get('/', function (req, res) {
@@ -156,9 +153,9 @@ router.post('/signup', isAuthenticated, function (req, res) {
       }
       invite.claimed = true;
       invite.save(function (err) {
-        if (err) console.error(err);
+        if (err) { console.error(err); }
         user.save(function (err) {
-          if (err) console.error(err);
+          if (err) { console.error(err); }
           req.flash('info', 'Signup was successful. You should be able to log in now.');
           res.redirect('/login');
         });
@@ -211,7 +208,7 @@ router.post('/admin/import', auth.connect(basic), function (req, res) {
   var separator = !req.body.separator ? "\n" : req.body.separator;
   uids = uids.split(separator);
   var enumUids = uids.length;
-  uids.forEach(function (uid, index) {
+  uids.forEach(function (uid) {
     var invite = new Invite();
     var inviteHash = crypto.createHash('sha256');
     inviteHash.update('' + uid + Math.random() + Date.now());
@@ -219,7 +216,7 @@ router.post('/admin/import', auth.connect(basic), function (req, res) {
     invite.uid = uid.replace(/\D/g, '');
     invite.claimed = false;
     invite.save(function (err) {
-      if (err) console.error(err);
+      if (err) { console.error(err); }
     });
   });
   res.render('imported', {
@@ -349,7 +346,7 @@ router.post('/admin/edit/:uid', auth.connect(basic), function(req, res) {
         console.error(err);
         req.flash('error', 'Oops! Something went wrong.');
         res.redirect('/admin/edit/'+req.body.uid);
-      };
+      }
       req.flash('info', 'Successfully saved the profile!');
       res.redirect('/admin/edit/'+req.body.uid);
     });
@@ -367,12 +364,12 @@ router.get('/admin/shuffle', auth.connect(basic),function(req, res) {
 router.post('/admin/shuffle', auth.connect(basic), function(req, res) {
   User.find({}, function(err, users) {
     var uidArr = [];
-    users.forEach(function (user, index) {
+    users.forEach(function (user) {
       uidArr.push(user.uid);
     });
     uidArr = _.shuffle(uidArr);
     var sUidArr = _.union(_.rest(uidArr), [_.first(uidArr)]);
-    for (i = 0; i < uidArr.length; i++) {
+    for (var i = 0; i < uidArr.length; i++) {
       var santa = new Santa();
       santa.santa = uidArr[i];
       santa.recipient = sUidArr[i];
@@ -398,7 +395,7 @@ router.get('/admin/messageall', auth.connect(basic), function(req, res) {
 
 router.post('/admin/messageall', auth.connect(basic), function(req, res) {
   User.find({}, function(err, users) {
-    users.forEach(function(user, index) {
+    users.forEach(function(user) {
       var message = new Message();
       message.from = '999999999';
       message.recipient = user.uid;
@@ -489,7 +486,7 @@ router.get('/admin/view/:uid', auth.connect(basic), function(req, res) {
     uid: req.params.uid
   }, function(err, user) {
     if (err || !user) {
-      req.flash('error', 'Oops! Something went wrong. Please contact Crypto™ on HF.');
+      req.flash('error', 'Oops! Something went wrong.');
       return res.redirect('/admin/list');
     }
     res.render('profile', {
@@ -553,7 +550,7 @@ router.post('/received', isNotAuthenticated, function (req, res) {
       if (err) {
         console.error(err);
         req.flash('error', 'Oops! Something went wrong.');
-        return res.redirect('/receive')
+        return res.redirect('/receive');
       }
       req.info('info', 'Gift confirmed received.');
       res.redirect('/dashboard');
@@ -722,7 +719,7 @@ router.post('/edit', isNotAuthenticated, function(req, res) {
     if (err) {
       console.error(err);
       req.flash('error', 'Oops! Something went wrong.');
-    };
+    }
     if (req.body.password) {
       user.password = req.body.password;
     }
@@ -737,7 +734,7 @@ router.post('/edit', isNotAuthenticated, function(req, res) {
         console.error(err);
         req.flash('error', 'Oops! Something went wrong.');
         res.redirect('/edit');
-      };
+      }
       req.flash('info', 'Successfully saved your profile!');
       res.redirect('/dashboard');
     });
@@ -749,15 +746,14 @@ router.get('/view/recipient', isNotAuthenticated, function(req, res) {
     santa: req.user.uid
   }, function(err, santa) {
     if (err || !santa) {
-      con
-      req.flash('error', 'Oops! Something went wrong. Please contact Crypto™ on HF.');
+      req.flash('error', 'Oops! Something went wrong.');
       return res.redirect('/dashboard');
     }
     User.findOne({
       uid: santa.recipient
     }, function(err, user) {
       if (err || !user) {
-        req.flash('error', 'Oops! Something went wrong. Please contact Crypto™ on HF.');
+        req.flash('error', 'Oops! Something went wrong.');
         return res.redirect('/dashboard');
       }
       res.render('profile', {
