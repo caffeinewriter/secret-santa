@@ -1,0 +1,12 @@
+extends layout
+block content
+    h1 Registration
+    p.
+        Please note this only registers your interest. You will be PMed a link to complete your signup shortly.
+        You must enter your numeric HackForums UID, which can be found by visiting your profile.
+        For example, Crypto&trade;'s UID is 1088934. It's part of the URL to his <a href="http://hackforums.net/member.php?action=profile&uid=1088934">profile</a>.
+    form.stylish(action='/register', method='POST')
+        .input-group
+            input(type='number', name='uid')
+            .captcha!= captcha
+            input(type='submit', value='Register')

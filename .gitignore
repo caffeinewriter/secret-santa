@@ -28,3 +28,7 @@ node_modules
 
 # Initialized config files
 config.js
+
+.idea
+
+secret.pem

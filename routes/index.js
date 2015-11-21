@@ -80,6 +80,33 @@ router.get('/', function (req, res) {
   });
 });
 
+router.get('/register', isAuthenticated, function (req, res) {
+  res.render('register', {
+    info: req.flash('info'),
+    error: req.flash('error'),
+    title: 'Secret Santa Registration',
+    captcha: req.recaptcha
+  });
+});
+
+router.post('/register', isAuthenticated, recaptcha.middleware.verify, function (req, res, next) {
+  if (req.recaptcha.success) {
+    return next();
+  } else {
+    var invite = new Invite();
+    var inviteHash = crypto.createHash('sha256');
+    inviteHash.update('' + req.body.uid + Math.random() + Date.now());
+    invite.inviteCode = inviteHash.digest('hex').substr(-16);
+    invite.uid = req.body.uid.replace(/\D/g, '');
+    invite.claimed = false;
+    invite.save(function (err) {
+      if (err) {
+        console.error(err);
+      }
+    });
+  }
+})
+
 router.get('/signup/:inviteToken', isAuthenticated, function (req, res) {
   Invite.findOne({ inviteCode: req.params.inviteToken }, function (err, invite) {
     if (err) {
@@ -173,8 +200,7 @@ router.get('/login', isAuthenticated, recaptcha.middleware.render, function (req
   });
 });
 
-router.post('/login', recaptcha.middleware.verify,
-function (req, res, next) {
+router.post('/login', recaptcha.middleware.verify, function (req, res, next) {
   if (req.recaptcha.success) {
     return next();
   } else {
@@ -394,27 +420,23 @@ router.get('/admin/messageall', auth.connect(basic), function(req, res) {
 });
 
 router.post('/admin/messageall', auth.connect(basic), function(req, res) {
-  User.find({}, function(err, users) {
-    users.forEach(function(user) {
-      var message = new Message();
-      message.from = '999999999';
-      message.recipient = user.uid;
-      message.body = req.body.message;
-      message.sent = Date.now();
-      message.unread = true;
-      var messageHash = crypto.createHash('sha256');
-      messageHash.update('' + user.uid + Math.random() + Date.now());
-      message.messageId = messageHash.digest('hex').substr(-16);
-      message.save(function(err) {
-        if (err) {
-          req.flash('error', 'Something went wrong!');
-          return res.redirect('/admin/messageall');
-        }
-      });
-    });
-    req.flash('info', 'Messages sent successfully.');
-    res.redirect('/admin/messageall');
+  var message = new Message();
+  message.from = '999999999';
+  message.recipient = '-1';
+  message.body = req.body.message;
+  message.sent = Date.now();
+  message.unread = true;
+  var messageHash = crypto.createHash('sha256');
+  messageHash.update('' + user.uid + Math.random() + Date.now());
+  message.messageId = messageHash.digest('hex').substr(-16);
+  message.save(function(err) {
+    if (err) {
+      req.flash('error', 'Something went wrong!');
+      return res.redirect('/admin/messageall');
+    }
   });
+  req.flash('info', 'Messages sent successfully.');
+  res.redirect('/admin/messageall');
 });
 
 router.get('/admin/pairings', auth.connect(basic), function(req, res) {
@@ -432,7 +454,7 @@ router.get('/admin/pairings/new', auth.connect(basic), function(req, res) {
   res.render('new-pairing', {
     info: req.flash('info'),
     error: req.flash('error'),
-    title: 'Secret Santa | Administration | New Pairing',
+    title: 'Secret Santa | Administration | New Pairing'
   });
 });
 
@@ -559,7 +581,7 @@ router.post('/received', isNotAuthenticated, function (req, res) {
 });
 
 router.get('/inbox', isNotAuthenticated, function (req, res) {
-  Message.find({recipient: req.user.uid}).sort({sent: -1}).exec(function (err, messages) {
+  Message.find({$or: [{recipient: req.user.uid}, {recipient: '-1'}]}).sort({sent: -1}).exec(function (err, messages) {
     if (err) {
       console.error(err);
     }
