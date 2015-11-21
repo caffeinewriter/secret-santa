@@ -81,12 +81,20 @@ router.get('/', function (req, res) {
 });
 
 router.get('/register', isAuthenticated, function (req, res) {
-  res.render('register', {
-    info: req.flash('info'),
-    error: req.flash('error'),
-    title: 'Secret Santa Registration',
-    captcha: req.recaptcha
-  });
+  if (config.signups.disabled) {
+    res.render('signup-disabled', {
+      info: req.flash('info'),
+      error: req.flash('error'),
+      title: 'Secret Santa | Sign Up Closed'
+    });
+  } else {
+    res.render('register', {
+      info: req.flash('info'),
+      error: req.flash('error'),
+      title: 'Secret Santa Registration',
+      captcha: req.recaptcha
+    });
+  }
 });
 
 router.post('/register', isAuthenticated, recaptcha.middleware.verify, function (req, res, next) {
