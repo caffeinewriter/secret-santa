@@ -16,7 +16,7 @@
     "debug": "~2.0.0",
     "jade": "~1.6.0",
     "bcrypt": "~0.8.0",
-    "mongoose": "~3.8.20",
+    "mongoose": "~4.2.7",
     "underscore": "~1.7.0",
     "connect-flash": "~0.1.1",
     "passport": "~0.2.1",
