@@ -80,7 +80,7 @@ router.get('/', function (req, res) {
   });
 });
 
-router.get('/register', isAuthenticated, function (req, res) {
+router.get('/register', isAuthenticated, recaptcha.middleware.render, function (req, res) {
   if (config.signups.disabled) {
     res.render('signup-disabled', {
       info: req.flash('info'),
@@ -113,7 +113,7 @@ router.post('/register', isAuthenticated, recaptcha.middleware.verify, function 
       }
     });
   }
-})
+});
 
 router.get('/signup/:inviteToken', isAuthenticated, function (req, res) {
   Invite.findOne({ inviteCode: req.params.inviteToken }, function (err, invite) {
