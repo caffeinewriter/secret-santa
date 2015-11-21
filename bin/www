@@ -17,12 +17,20 @@ var mdbOptions;
 
 var connectDb = function() {
   mdbOptions = {
+    replset: {
+      socketOptions: {
+        keepAlive: 1,
+        connectTimeoutMS: 30000
+      }
+    },
     server: {
       socketOptions: {
-        keepAlive: 1
+        keepAlive: 1,
+        connectTimeoutMS: 30000
       }
     }
-  }
+  };
+    console.log(MONGO_URL);
   mongoose.connect(MONGO_URL, mdbOptions);
 };
 
