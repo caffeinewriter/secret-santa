@@ -7,5 +7,7 @@ block content
         For example, Crypto&trade;'s UID is 1088934. It's part of the URL to his <a href="http://hackforums.net/member.php?action=profile&uid=1088934">profile</a>.
     form.stylish(action='/register', method='POST')
         input(type='number', name='uid')
+        br
         .captcha!= captcha
+        br
         input(type='submit', value='Register')
