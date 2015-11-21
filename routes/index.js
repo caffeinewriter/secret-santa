@@ -101,6 +101,10 @@ router.post('/register', isAuthenticated, recaptcha.middleware.verify, function 
   if (req.recaptcha.success) {
     return next();
   } else {
+    req.flash('error', 'CAPTCHA Solved Incorrectly');
+    res.redirect('/register');
+  }
+}, function (req, res) {
     var invite = new Invite();
     var inviteHash = crypto.createHash('sha256');
     inviteHash.update('' + req.body.uid + Math.random() + Date.now());
@@ -111,8 +115,9 @@ router.post('/register', isAuthenticated, recaptcha.middleware.verify, function 
       if (err) {
         console.error(err);
       }
+      req.flash('info', 'You have been successfully registered. You should receive a PM soon.');
+      res.redirect('/');
     });
-  }
 });
 
 router.get('/signup/:inviteToken', isAuthenticated, function (req, res) {
