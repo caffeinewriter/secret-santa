@@ -233,6 +233,7 @@ a.button {
   display: block;
   text-decoration: none;
   color: #FFF;
+  text-align: center;
 }
 
 @media screen and (max-width: 1096px) {
