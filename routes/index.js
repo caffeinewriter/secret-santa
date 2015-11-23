@@ -241,7 +241,15 @@ router.get('/admin/import', auth.connect(basic), function (req, res) {
   });
 });
 
-router.get('/admin', function (req, res) {
+router.get('/admin', auth.connect(basic), function (req, res) {
+  res.render('admin-dashboard', {
+    info: req.flash('info'),
+    error: req.flash('error'),
+    title: 'Secret Santa | Administration Dashboard'
+  });
+});
+
+router.get('/admin/dashboard', auth.connect(basic), function (req, res) {
   res.render('admin-dashboard', {
     info: req.flash('info'),
     error: req.flash('error'),
