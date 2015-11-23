@@ -188,8 +188,8 @@ router.post('/signup', isAuthenticated, function (req, res) {
       user.uid = invite.uid;
       user.password = sanitizer.escape(req.body.password);
       user.interests = sanitizer.escape(req.body.interests);
-      if (req.body.address1) {
-        user.address = sanitizer.escape(req.body.address1 + "\n" + (req.body.address2 ? req.body.address2 + "\n" : '') + req.body.city + ', ' + (req.body.state ? req.body.state + ', ' : '') + req.body.postal + ', ' + req.body.country);
+      if (req.body.address1.length > 0) {
+        user.address = sanitizer.escape(req.body.address1 + "\n" + (req.body.address2.length > 0 ? req.body.address2 + "\n" : '') + req.body.city + ', ' + (req.body.state ? req.body.state + ', ' : '') + req.body.postal + ', ' + req.body.country);
       }
       invite.claimed = true;
       invite.save(function (err) {

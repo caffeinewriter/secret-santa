@@ -11,23 +11,33 @@ block content
     .input-padding
       input.styled(type='text', name='interests', placeholder='Type your interests here.')
     p The address is only required if you wish to receive physical gifts. Otherwise, leave it blank.
-    .input-group
+    .input-padding
+      input(type='checkbox', id='receivephysical', name='receivephysical')
+      label(for='receivephysical') I would like to potentially receive a physical gift
+    .input-group.address
       input(type='text', name='address1', placeholder='Address Line 1')
       input(type='text', name='adderss2', placeholder='Address Line 2 (Optional)')
       input(type='text', name='city', placeholder='City')
       input(type='text', name='state', placeholder='State/Province')
       input(type='text', name='postal', placeholder='Postal Code')
       input(type='text', name='country', placeholder='Country')
-      label(for='minimumval') I understand that gifts should have a minimum value of $10 USD. <a href="https://www.google.com/finance/converter?a=10&from=USD&to=EUR" target="_blank">Click here to convert</a>
+    .invite-group
       input(type='checkbox', id='minimumval')
-      label(for='noself') I understand that I may not give products as gifts that I created, sell, resell, or otherwise have a hand in producing such as eBooks or programs.
+      label(for='minimumval') I understand that gifts should have a minimum value of $10 USD. <a href="https://www.google.com/finance/converter?a=10&from=USD&to=EUR" target="_blank">Click here to convert</a>
       input(type='checkbox', id='noself')
+      label(for='noself') I understand that I may not give products as gifts that I created, sell, resell, or otherwise have a hand in producing such as eBooks or programs.
+    .input-padding
       input(type='submit', value='Join', disabled='disabled')
   script.
-    $('label + input[type=checkbox]').on('change', function () {
+    $('input[type=checkbox]').on('change', function () {
       if ($('#minimumval').is(':checked') && $('#noself').is(':checked')) {
         $('input[type=submit]').removeAttr('disabled')
       } else {
         $('input[type=submit]').attr('disabled', 'disabled');
+      }
+      if ($('#receivephysical').is(':checked')) {
+        $('.address').slideDown();
+      } else {
+        $('.address').slideUp();
       }
     });
