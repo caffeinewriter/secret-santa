@@ -208,8 +208,12 @@ form.compact {
   margin: 10px;
 }
 
-.menu-tab: {
+.menu-tab {
   display: none;
+}
+
+form.stylish input[type=checkbox] {
+  display: inline-block;
 }
 
 @media screen and (max-width: 1096px) {
