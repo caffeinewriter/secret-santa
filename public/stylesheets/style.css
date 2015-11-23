@@ -214,6 +214,7 @@ form.compact {
 
 form.stylish input[type=checkbox] {
   display: inline-block;
+  width: 5%;
 }
 
 @media screen and (max-width: 1096px) {
