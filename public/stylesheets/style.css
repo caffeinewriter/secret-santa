@@ -60,11 +60,11 @@ a {
 }
 
 ul.nav {
-  top: 0px;
+  top: 0;
   list-style-type: none;
   margin: 0;
   padding: 0;
-  height: 100%:
+  height: 100%;
 }
 
 ul.nav li {
@@ -72,7 +72,7 @@ ul.nav li {
   position: relative;
   display: block;
   float: left;
-  text-align: middle;
+  text-align: center;
 }
 
 ul.nav li:hover {
@@ -99,7 +99,7 @@ ul.nav li a {
 }
 
 .menu-nav .title {
-  text-transform: 'small-caps';
+  text-transform: uppercase;
   font-weight: 400;
 }
 
@@ -173,7 +173,7 @@ input.styled {
   padding: 1em inherit;
 }
 
-button.square-button {
+button.square-button, a.button {
   width: 100%;
   height: 200px;
   border-radius: 10px;
@@ -191,7 +191,7 @@ table {
 }
 
 thead {
-  font-style: bold;
+  font-size: 700;
 }
 
 td {
