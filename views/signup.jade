@@ -18,4 +18,16 @@ block content
       input(type='text', name='state', placeholder='State/Province')
       input(type='text', name='postal', placeholder='Postal Code')
       input(type='text', name='country', placeholder='Country')
-      input(type='submit', value='Join')
+      label(for='minimumval') I understand that gifts should have a minimum value of $10 USD. <a href="https://www.google.com/finance/converter?a=10&from=USD&to=EUR" target="_blank">Click here to convert</a>
+      input(type='checkbox', id='minimumval')
+      label(for='noself') I understand that I may not give products as gifts that I created, sell, resell, or otherwise have a hand in producing such as eBooks or programs.
+      input(type='checkbox', id='noself')
+      input(type='submit', value='Join', disabled='disabled')
+  script.
+    $('label + input[type=checkbox]').on('change', function () {
+      if ($('#minimumval').is(':checked') && $('#noself').is(':checked')) {
+        $('input[type=submit]').removeAttr('disabled')
+      } else {
+        $('input[type=submit]').attr('disabled', 'disabled');
+      }
+    });
