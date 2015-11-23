@@ -217,6 +217,10 @@ form.stylish input[type=checkbox] {
   width: 5%;
 }
 
+.checkbox-group {
+  display: block;
+}
+
 @media screen and (max-width: 1096px) {
   .menu-tab {
     display: block;

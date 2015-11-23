@@ -22,10 +22,12 @@ block content
       input(type='text', name='postal', placeholder='Postal Code')
       input(type='text', name='country', placeholder='Country')
     .invite-group
-      input(type='checkbox', id='minimumval')
-      label(for='minimumval') I understand that gifts should have a minimum value of $10 USD. <a href="https://www.google.com/finance/converter?a=10&from=USD&to=EUR" target="_blank">Click here to convert</a>
-      input(type='checkbox', id='noself')
-      label(for='noself') I understand that I may not give products as gifts that I created, sell, resell, or otherwise have a hand in producing such as eBooks or programs.
+      .checkbox-group
+        input(type='checkbox', id='minimumval')
+        label(for='minimumval') I understand that gifts should have a minimum value of $10 USD. <a href="https://www.google.com/finance/converter?a=10&from=USD&to=EUR" target="_blank">Click here to convert</a>
+      .checkbox-group
+        input(type='checkbox', id='noself')
+        label(for='noself') I understand that I may not give products as gifts that I created, sell, resell, or otherwise have a hand in producing such as eBooks or programs.
     .input-padding
       input(type='submit', value='Join', disabled='disabled')
   script.
