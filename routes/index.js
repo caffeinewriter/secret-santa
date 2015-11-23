@@ -241,6 +241,14 @@ router.get('/admin/import', auth.connect(basic), function (req, res) {
   });
 });
 
+router.get('/admin', function (req, res) {
+  res.render('admin-dashboard', {
+    info: req.flash('info'),
+    error: req.flash('error'),
+    title: 'Secret Santa | Administration Dashboard'
+  });
+});
+
 router.post('/admin/import', auth.connect(basic), function (req, res) {
   var uids = req.body.uids;
   uids = uids.replace("\r", '');
