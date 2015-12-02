@@ -297,6 +297,17 @@ router.get('/admin/list', auth.connect(basic), function (req, res) {
   });
 });
 
+router.get('/admin/list/plain', auth.connect(basic), function (req, res) {
+  Invite.find({claimed: false}).sort({_id: 1}).exec(function (err, invites) {
+    res.render('admin-copy-invites', {
+      info: req.flash('info'),
+      error: req.flash('error'),
+      title: 'Secret Santa | Administration | Plain Text Invite List',
+      invites: invites
+    });
+  });
+});
+
 router.get('/admin/message', auth.connect(basic), function(req, res) {
   res.render('custom-message', {
     info: req.flash('info'),
