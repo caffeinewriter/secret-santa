@@ -37,6 +37,10 @@ passport.use(new LocalStrategy(
         if (!isMatch) {
           return done(null, false);
         } else {
+          user.last_login = new Date();
+          user.save(function (err) {
+            if (!!err) console.error(err);
+          });
           return done(null, user);
         }
       });
@@ -807,6 +811,14 @@ router.get('/view/recipient', isNotAuthenticated, function(req, res) {
         req.flash('error', 'Oops! Something went wrong.');
         return res.redirect('/dashboard');
       }
+      santa.retrieved = true;
+      santa.last_retrieved = new Date();
+      santa.save(function () {
+        if (err) {
+          req.flash('error', 'Oops! Something went wrong.');
+          return res.redirect('/dashboard');
+        }
+      });
       res.render('profile', {
         info: req.flash('info'),
         error: req.flash('error'),

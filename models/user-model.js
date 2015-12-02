@@ -19,6 +19,10 @@ var UserSchema = new mongoose.Schema({
   address: {
     type: String,
     required: false
+  },
+  last_login: {
+    type: Date,
+    required: false
   }
 });
 
