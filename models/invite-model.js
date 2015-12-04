@@ -7,7 +7,8 @@ InviteSchema = new mongoose.Schema({
   },
   uid: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   sent: {
     type: Boolean,
