@@ -5,7 +5,6 @@ var debug = require('debug')('SecretSanta');
 var path = require('path');
 var app = require('../app');
 var http = require('http');
-var https = require('https');
 var config = require(path.join(__dirname,'..', 'config.js'));
 var mongoose = require('mongoose');
 var murl = 'mongodb://' + config.db.user + ':';
@@ -30,7 +29,6 @@ var connectDb = function() {
       }
     }
   };
-    console.log(MONGO_URL);
   mongoose.connect(MONGO_URL, mdbOptions);
 };
 
