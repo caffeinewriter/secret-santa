@@ -16,7 +16,7 @@ block content
       label(for='receivephysical') I would like to potentially receive a physical gift
     .input-group.address
       input(type='text', name='address1', placeholder='Address Line 1')
-      input(type='text', name='adderss2', placeholder='Address Line 2 (Optional)')
+      input(type='text', name='address2', placeholder='Address Line 2 (Optional)')
       input(type='text', name='city', placeholder='City')
       input(type='text', name='state', placeholder='State/Province')
       input(type='text', name='postal', placeholder='Postal Code')
@@ -35,7 +35,7 @@ block content
       input(type='submit', value='Join', disabled='disabled')
   script.
     $('input[type=checkbox]').on('change', function () {
-      if ($('#minimumval').is(':checked') && $('#noself').is(':checked')) {
+      if ($('#minimumval').is(':checked') && $('#noself').is(':checked') && $('#mustmark').is(':checked')) {
         $('input[type=submit]').removeAttr('disabled')
       } else {
         $('input[type=submit]').attr('disabled', 'disabled');
