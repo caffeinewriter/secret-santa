@@ -137,7 +137,7 @@ router.get('/signup/:inviteToken', isAuthenticated, function (req, res) {
         error: req.flash('error'),
         title: 'Secret Santa | Sign Up Closed'
       });
-    } else if (!invite || invite.claimed) {
+    } else if (!invite || invite.claimed || invite.denied) {
       req.flash('error', 'This is an invalid invite code.');
       res.render('uninvited', {
         info: req.flash('info'),
@@ -173,7 +173,7 @@ router.post('/signup', isAuthenticated, function (req, res) {
         error: req.flash('error'),
         title: 'Secret Santa | Sign Up Closed'
       });
-    } else if (!invite || invite.claimed) {
+    } else if (!invite || invite.claimed || invite.denied) {
       req.flash('error', 'This is an invalid invite code.');
       res.render('uninvited', {
         info: req.flash('info'),

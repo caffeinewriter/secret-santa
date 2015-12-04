@@ -6,6 +6,8 @@ block content
       td UID
       td Invite Code
       td PM Link
+      td Deny
+      td Sent
     - each invite in invites
       - var inviteClass = 'invite-normal';
       - if (invite.denied) { inviteClass="invite-denied" } else if (invite.sent) { inviteClass="invite-sent" }
