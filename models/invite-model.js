@@ -9,6 +9,14 @@ InviteSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  sent: {
+    type: Boolean,
+    default: false
+  },
+  denied: {
+    type: Boolean,
+    default: false
+  },
   claimed: {
     type: Boolean,
     default: false

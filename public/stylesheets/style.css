@@ -24,14 +24,14 @@ a {
 
 .error, .info {
   position: fixed;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 4em;
   color: #FFF;
   line-height: 3em;
   text-align: center;
-  padding: 0px;
+  padding: 0;
   z-index: 5;
   font-size: 1.2em;
 }
@@ -46,8 +46,8 @@ a {
 
 .menu-nav {
   position: fixed;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 4em;
   color: #FFF;
@@ -90,7 +90,7 @@ ul.nav li a {
 .menu-inner {
   width: 85%;
   height: 100%;
-  margin: 0px auto;
+  margin: 0 auto;
 }
 
 .menu-nav a {
@@ -121,7 +121,6 @@ input[alt^="PayPal"] {
 
 input {
   padding: 1em 2em;
-  border: none;
   border: 2px #444 solid;
 }
 
@@ -134,17 +133,17 @@ input {
 }
 
 .input-group input:first-child {
-  border-radius: 10px 10px 0px 0px;
+  border-radius: 10px 10px 0 0;
   border-bottom: none;
 }
 
 .input-group input:last-child {
-  border-radius: 0px 0px 10px 10px;
+  border-radius: 0 0 10px 10px;
   border-bottom: 2px #444 solid;
 }
 
 .input-padding {
-  padding: 1em 0em;
+  padding: 1em 0;
 }
 
 input[type='submit'] {
@@ -178,7 +177,7 @@ button.square-button {
   border-radius: 10px;
   border: 3px #444 solid;
   background-color: #EEE;
-  margin: 0px auto;
+  margin: 0 auto;
 }
 
 button.sqaure-button a {
@@ -272,4 +271,12 @@ a.button {
     line-height: 1em;
     padding: 1.5em;
   }
+}
+
+.invite-denied {
+  background-color: #BB3E3E
+}
+
+.invite-sent {
+  background-color: #33BB33;
 }

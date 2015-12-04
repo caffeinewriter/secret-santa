@@ -297,6 +297,46 @@ router.get('/admin/list', auth.connect(basic), function (req, res) {
   });
 });
 
+router.post('/admin/deny/:invite', auth.connect(basic), function (req, res) {
+  Invite.findOne({
+    inviteCode: req.params.invite
+  }, function (err, invite) {
+    if (!!err || !invite) {
+      req.flash('error', 'Something went wrong.');
+      return res.redirect('/admin/list');
+    }
+    invite.denied = true;
+    invite.save(function (err) {
+      if (!!err) {
+        req.flash('error', 'Something went wrong while saving the invite.');
+        return res.redirect('/admin/list');
+      }
+      req.flash('info', 'Invite successfully denied for ' + invite.uid);
+      res.redirect('/admin/list');
+    });
+  });
+});
+
+router.post('/admin/sent/:invite', auth.connect(basic), function (req, res) {
+  Invite.findOne({
+    inviteCode: req.params.invite
+  }, function (err, invite) {
+    if (!!err || !invite) {
+      req.flash('error', 'Something went wrong.');
+      return res.redirect('/admin/list');
+    }
+    invite.sent = true;
+    invite.save(function (err) {
+      if (!!err) {
+        req.flash('error', 'Oops! Something went wrong while saving the invitation.');
+        return res.redirect('/admin/list');
+      }
+      req.flash('info', 'Successfully marked invite as sent');
+      res.redirect('/admin/list');
+    })
+  })
+});
+
 router.get('/admin/list/plain', auth.connect(basic), function (req, res) {
   Invite.find({claimed: false}).sort({_id: 1}).exec(function (err, invites) {
     res.render('admin-copy-invites', {
