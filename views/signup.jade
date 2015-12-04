@@ -3,6 +3,7 @@ extends layout
 block content
   h1 Signup
   p Your UID is auto-filled.
+  p Do not use the same password here that you do on HackForums. We hash it securely, but please follow proper security procedures and just don't reuse passwords.
   form.stylish(action='/signup', method='POST')
     input(type='hidden', value=inviteCode, name='inviteCode')
     .input-group
