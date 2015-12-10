@@ -848,6 +848,10 @@ router.post('/edit', isNotAuthenticated, function(req, res) {
 });
 
 router.get('/view/recipient', isNotAuthenticated, function(req, res) {
+  if (!config.signups.disabled) {
+    req.flash('info', 'Matching hasn\'t occurred yet, so there\'s no match to view. Please check back in a few days.');
+    return res.redirect('/dashboard');
+  }
   Santa.findOne({
     santa: req.user.uid
   }, function(err, santa) {
