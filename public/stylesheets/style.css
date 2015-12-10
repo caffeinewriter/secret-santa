@@ -284,5 +284,14 @@ a.button {
 .alert {
   background-color: #AA2E2E;
   width: 100%;
-  padding: 1em auto;
+  padding: 1em;
+  border-radius: 10px;
+  border: 2px #222 solid;
+  color: #FFF;
+}
+
+
+
+.alert-success {
+  background-color: #22AA22;
 }

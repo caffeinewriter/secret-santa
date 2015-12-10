@@ -615,7 +615,8 @@ router.get('/dashboard', isNotAuthenticated, function (req, res) {
       error: req.flash('error'),
       title: 'Secret Santa | Dashboard',
       user: req.user,
-      unreadCount: messages.length
+      unreadCount: messages.length,
+      matched: config.signups.disabled
     });
   });
 });
