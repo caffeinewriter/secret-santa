@@ -280,3 +280,9 @@ a.button {
 .invite-sent {
   background-color: #33BB33;
 }
+
+.alert {
+  background-color: #AA2E2E;
+  width: 100%;
+  padding: 1em auto;
+}
