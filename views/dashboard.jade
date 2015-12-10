@@ -2,7 +2,7 @@ extends layout
 
 block content
   - if (!matched)
-    .alert Matching hasn't occurred yet. Watch this message for it to change.
+    .alert Matching hasn't occurred yet. Check back in a few days see if matching has occurred.
   - else
     .alert.alert-success You've been matched! Go and check out your giftee!
   h1 Logged in as #{user.uid}
@@ -12,4 +12,4 @@ block content
       input(type='submit', value='Read Your Mail. ('+ unreadCount +' Unread Message' + (unreadCount == 1 ? ')' : 's)' ))
   form(action='/view/recipient')
     .input-padding
-      input(type='submit', value='View Who You\'re Gifting To!')
+      input(type='submit', value='View Who You\'re Gifting To!', disabled=matched ? '' : 'disabled')
