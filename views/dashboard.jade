@@ -12,4 +12,5 @@ block content
       input(type='submit', value='Read Your Mail. ('+ unreadCount +' Unread Message' + (unreadCount == 1 ? ')' : 's)' ))
   form(action='/view/recipient')
     .input-padding
-      input(type='submit', value='View Who You\'re Gifting To!', disabled=matched ? '' : 'disabled')
+      - matchDisabled = !!matched ? undefined : 'disabled'
+      input(type='submit', value='View Who You Are Gifting To!', disabled=matchDisabled)
